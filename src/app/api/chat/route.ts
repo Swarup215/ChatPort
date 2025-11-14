@@ -93,7 +93,10 @@ export async function POST(request: NextRequest) {
 
     if (!GROQ_API_KEY) {
       return NextResponse.json(
-        { error: "Groq API key is not configured. Please set GROQ_API_KEY in your environment variables." },
+        {
+          error:
+            "Groq API key is not configured. Please set GROQ_API_KEY in your environment variables.",
+        },
         { status: 500 }
       );
     }
