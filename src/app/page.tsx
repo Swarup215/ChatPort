@@ -1,59 +1,72 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ThemeToggle } from "@/components/theme-toggle"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import { Separator } from "@/components/ui/separator"
-import { Github, Linkedin, Mail, ExternalLink, Code, Database, Brain, Cpu, ArrowDown, Menu, X } from "lucide-react"
-import { useInView } from "react-intersection-observer"
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import { Separator } from "@/components/ui/separator";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  ExternalLink,
+  Code,
+  Database,
+  Brain,
+  Cpu,
+  ArrowDown,
+  Menu,
+  X,
+} from "lucide-react";
+import { useInView } from "react-intersection-observer";
+import { GroqChatButton } from "@/components/Chatbot";
 
 const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-    setIsMobileMenuOpen(false)
-  }
+    setIsMobileMenuOpen(false);
+  };
 
-  const navItems = ['about', 'skills', 'projects', 'contact']
+  const navItems = ["about", "skills", "projects", "contact"];
 
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-background/80 backdrop-blur-md border-b shadow-lg' 
-          : 'bg-transparent'
+        isScrolled
+          ? "bg-background/80 backdrop-blur-md border-b shadow-lg"
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <motion.div 
+          <motion.div
             className="text-xl font-bold text-gradient cursor-pointer"
             whileHover={{ scale: 1.05, rotate: [0, 2, -2, 0] }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => scrollToSection('about')}
+            onClick={() => scrollToSection("about")}
           >
             SK
           </motion.div>
-          
+
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item, index) => (
               <motion.button
@@ -75,7 +88,7 @@ const Navigation = () => {
               </motion.button>
             ))}
           </div>
-          
+
           <div className="flex items-center space-x-4">
             <motion.div
               whileHover={{ rotate: 180 }}
@@ -98,12 +111,12 @@ const Navigation = () => {
             </motion.button>
           </div>
         </div>
-        
+
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
+              animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
               className="md:hidden py-4 border-t"
@@ -127,22 +140,27 @@ const Navigation = () => {
         </AnimatePresence>
       </div>
     </motion.nav>
-  )
-}
+  );
+};
 
 const HeroSection = () => {
-  const [currentText, setCurrentText] = useState(0)
-  const [isVisible, setIsVisible] = useState(false)
-  
-  const roles = ["Full Stack Developer", "Machine Learning Engineer", "Problem Solver", "Tech Enthusiast"]
-  
+  const [currentText, setCurrentText] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const roles = [
+    "Full Stack Developer",
+    "Machine Learning Engineer",
+    "Problem Solver",
+    "Tech Enthusiast",
+  ];
+
   useEffect(() => {
-    setIsVisible(true)
+    setIsVisible(true);
     const interval = setInterval(() => {
-      setCurrentText((prev) => (prev + 1) % roles.length)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [])
+      setCurrentText((prev) => (prev + 1) % roles.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -150,10 +168,10 @@ const HeroSection = () => {
       opacity: 1,
       transition: {
         delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
-  }
+        staggerChildren: 0.2,
+      },
+    },
+  };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -162,13 +180,16 @@ const HeroSection = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.99]
-      }
-    }
-  }
+        ease: [0.6, -0.05, 0.01, 0.99],
+      },
+    },
+  };
 
   return (
-    <section id="about" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section
+      id="about"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+    >
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
         <motion.div
@@ -178,13 +199,13 @@ const HeroSection = () => {
               "radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%)",
               "radial-gradient(circle at 80% 50%, rgba(255, 119, 198, 0.1) 0%, transparent 50%)",
               "radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.1) 0%, transparent 50%)",
-              "radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%)"
-            ]
+              "radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%)",
+            ],
           }}
           transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
         />
       </div>
-      
+
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -201,15 +222,15 @@ const HeroSection = () => {
             </Badge>
           </motion.div>
         </motion.div>
-        
-        <motion.h1 
+
+        <motion.h1
           variants={itemVariants}
           className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
         >
           <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
             Hi, I'm{" "}
           </span>
-          <motion.span 
+          <motion.span
             className="relative inline-block"
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.3 }}
@@ -225,7 +246,7 @@ const HeroSection = () => {
             />
           </motion.span>
         </motion.h1>
-        
+
         <motion.div variants={itemVariants} className="h-8 mb-8">
           <AnimatePresence mode="wait">
             <motion.div
@@ -240,27 +261,29 @@ const HeroSection = () => {
             </motion.div>
           </AnimatePresence>
         </motion.div>
-        
-        <motion.p 
+
+        <motion.p
           variants={itemVariants}
           className="text-lg md:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed"
         >
-          Passionate about creating innovative solutions at the intersection of full-stack development and machine learning. 
-          I love building scalable applications and exploring the frontiers of AI.
+          Passionate about creating innovative solutions at the intersection of
+          full-stack development and machine learning. I love building scalable
+          applications and exploring the frontiers of AI.
         </motion.p>
-        
-        <motion.div 
+
+        <motion.div
           variants={itemVariants}
           className="flex flex-wrap gap-4 justify-center mb-12"
         >
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button 
-              size="lg" 
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button
+              size="lg"
               className="px-8 py-3 text-base relative overflow-hidden group"
-              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() =>
+                document
+                  .getElementById("projects")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
               <span className="relative z-10">View My Work</span>
               <motion.div
@@ -272,40 +295,41 @@ const HeroSection = () => {
               <ArrowDown className="ml-2 h-4 w-4 relative z-10" />
             </Button>
           </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button 
-              variant="outline" 
-              size="lg" 
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button
+              variant="outline"
+              size="lg"
               className="px-8 py-3 text-base"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() =>
+                document
+                  .getElementById("contact")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
               Contact Me
               <Mail className="ml-2 h-4 w-4" />
             </Button>
           </motion.div>
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           variants={itemVariants}
           className="flex gap-6 justify-center"
         >
           {[
             { icon: <Github size={24} />, href: "https://github.com" },
             { icon: <Linkedin size={24} />, href: "https://linkedin.com" },
-            { icon: <Mail size={24} />, href: "mailto:swarup@example.com" }
+            { icon: <Mail size={24} />, href: "mailto:swarup@example.com" },
           ].map((social, index) => (
             <motion.a
               key={index}
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ 
-                scale: 1.2, 
+              whileHover={{
+                scale: 1.2,
                 rotate: [0, 10, -10, 0],
-                transition: { duration: 0.3 }
+                transition: { duration: 0.3 },
               }}
               whileTap={{ scale: 0.9 }}
               className="text-muted-foreground hover:text-foreground transition-colors"
@@ -315,7 +339,7 @@ const HeroSection = () => {
           ))}
         </motion.div>
       </motion.div>
-      
+
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
@@ -324,14 +348,14 @@ const HeroSection = () => {
         <ArrowDown className="h-6 w-6 text-muted-foreground" />
       </motion.div>
     </section>
-  )
-}
+  );
+};
 
 const SkillsSection = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.1
-  })
+    threshold: 0.1,
+  });
 
   const skills = [
     {
@@ -339,44 +363,54 @@ const SkillsSection = () => {
       icon: <Code className="h-5 w-5" />,
       image: "/skills-icons.png",
       items: ["React/Next.js", "Node.js", "TypeScript", "Python"],
-      description: "Building modern web applications with cutting-edge frameworks"
+      description:
+        "Building modern web applications with cutting-edge frameworks",
     },
     {
       category: "Programming Languages",
       icon: <Cpu className="h-5 w-5" />,
       image: "/languages-skills.png",
       items: ["C/C++", "Java", "JavaScript", "Go"],
-      description: "Strong foundation in multiple programming paradigms"
+      description: "Strong foundation in multiple programming paradigms",
     },
     {
       category: "Machine Learning",
       icon: <Brain className="h-5 w-5" />,
       image: "/ml-skills.png",
       items: ["TensorFlow", "PyTorch", "Scikit-learn", "Data Science"],
-      description: "Developing intelligent solutions with advanced ML techniques"
+      description:
+        "Developing intelligent solutions with advanced ML techniques",
     },
     {
       category: "Database & Tools",
       icon: <Database className="h-5 w-5" />,
       image: "/database-skills.png",
       items: ["PostgreSQL", "MongoDB", "Docker", "AWS"],
-      description: "Managing data and deploying applications at scale"
-    }
-  ]
+      description: "Managing data and deploying applications at scale",
+    },
+  ];
 
   const getSkillColor = (level: string) => {
     switch (level) {
-      case 'Expert': return 'bg-green-500'
-      case 'Advanced': return 'bg-blue-500'
-      case 'Intermediate': return 'bg-yellow-500'
-      default: return 'bg-gray-500'
+      case "Expert":
+        return "bg-green-500";
+      case "Advanced":
+        return "bg-blue-500";
+      case "Intermediate":
+        return "bg-yellow-500";
+      default:
+        return "bg-gray-500";
     }
-  }
+  };
 
   return (
-    <section ref={ref} id="skills" className="py-20 px-4 relative overflow-hidden">
+    <section
+      ref={ref}
+      id="skills"
+      className="py-20 px-4 relative overflow-hidden"
+    >
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
-      
+
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -384,7 +418,7 @@ const SkillsSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold mb-4"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -392,32 +426,37 @@ const SkillsSection = () => {
           >
             Skills & Expertise
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-muted-foreground max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            A comprehensive skill set spanning full-stack development, programming languages, and machine learning
+            A comprehensive skill set spanning full-stack development,
+            programming languages, and machine learning
           </motion.p>
         </motion.div>
-        
+
         <div className="grid md:grid-cols-2 gap-8">
           {skills.map((skillGroup, index) => (
             <motion.div
               key={skillGroup.category}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100, rotateY: index % 2 === 0 ? -15 : 15 }}
+              initial={{
+                opacity: 0,
+                x: index % 2 === 0 ? -100 : 100,
+                rotateY: index % 2 === 0 ? -15 : 15,
+              }}
               animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
-              transition={{ 
-                duration: 0.8, 
+              transition={{
+                duration: 0.8,
                 delay: index * 0.2,
                 type: "spring",
-                stiffness: 100
+                stiffness: 100,
               }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
                 rotateY: 5,
-                z: 50
+                z: 50,
               }}
               className="perspective-1000"
             >
@@ -433,27 +472,29 @@ const SkillsSection = () => {
                     whileHover={{ scale: 1.1 }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/90 to-transparent" />
-                  <motion.div 
+                  <motion.div
                     className="absolute bottom-4 left-4 right-4"
                     initial={{ y: 20, opacity: 0 }}
                     animate={inView ? { y: 0, opacity: 1 } : {}}
                     transition={{ duration: 0.6, delay: index * 0.2 + 0.5 }}
                   >
                     <div className="flex items-center gap-3 mb-2">
-                      <motion.div 
+                      <motion.div
                         className="p-2 bg-primary/20 backdrop-blur-sm rounded-lg text-primary border border-primary/20"
                         whileHover={{ rotate: 360 }}
                         transition={{ duration: 0.6 }}
                       >
                         {skillGroup.icon}
                       </motion.div>
-                      <h3 className="text-xl font-semibold text-white">{skillGroup.category}</h3>
+                      <h3 className="text-xl font-semibold text-white">
+                        {skillGroup.category}
+                      </h3>
                     </div>
                   </motion.div>
                 </div>
-                
+
                 <CardContent className="p-6">
-                  <motion.p 
+                  <motion.p
                     className="text-muted-foreground mb-6 leading-relaxed"
                     initial={{ opacity: 0 }}
                     animate={inView ? { opacity: 1 } : {}}
@@ -461,8 +502,8 @@ const SkillsSection = () => {
                   >
                     {skillGroup.description}
                   </motion.p>
-                  
-                  <motion.div 
+
+                  <motion.div
                     className="flex flex-wrap gap-2"
                     initial={{ opacity: 0, y: 20 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -474,8 +515,8 @@ const SkillsSection = () => {
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <Badge 
-                          variant="outline" 
+                        <Badge
+                          variant="outline"
                           className="text-xs px-3 py-1 border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors"
                         >
                           {skill}
@@ -488,7 +529,7 @@ const SkillsSection = () => {
             </motion.div>
           ))}
         </div>
-        
+
         <motion.div
           className="absolute top-20 left-10 w-20 h-20 bg-primary/20 rounded-full blur-xl"
           animate={{
@@ -498,7 +539,7 @@ const SkillsSection = () => {
           transition={{
             duration: 10,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
         <motion.div
@@ -510,49 +551,71 @@ const SkillsSection = () => {
           transition={{
             duration: 12,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
       </div>
     </section>
-  )
-}
+  );
+};
 
 const ProjectsSection = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.1
-  })
+    threshold: 0.1,
+  });
 
   const projects = [
     {
       title: "E-Commerce Platform",
-      description: "A full-stack e-commerce solution with real-time inventory management, payment processing, and AI-powered recommendations.",
+      description:
+        "A full-stack e-commerce solution with real-time inventory management, payment processing, and AI-powered recommendations.",
       tech: ["Next.js", "TypeScript", "PostgreSQL", "Stripe"],
-      features: ["Real-time inventory", "AI recommendations", "Payment processing", "Admin dashboard"],
+      features: [
+        "Real-time inventory",
+        "AI recommendations",
+        "Payment processing",
+        "Admin dashboard",
+      ],
       link: "#",
-      icon: "🛒"
+      icon: "🛒",
     },
     {
       title: "ML-Powered Analytics Dashboard",
-      description: "An intelligent analytics platform that uses machine learning to provide predictive insights and automated reporting.",
+      description:
+        "An intelligent analytics platform that uses machine learning to provide predictive insights and automated reporting.",
       tech: ["Python", "TensorFlow", "React", "FastAPI"],
-      features: ["Predictive analytics", "Automated reports", "Data visualization", "ML models"],
+      features: [
+        "Predictive analytics",
+        "Automated reports",
+        "Data visualization",
+        "ML models",
+      ],
       link: "#",
-      icon: "📊"
+      icon: "📊",
     },
     {
       title: "Real-Time Chat Application",
-      description: "A scalable chat application with end-to-end encryption, video calling, and AI-powered message moderation.",
+      description:
+        "A scalable chat application with end-to-end encryption, video calling, and AI-powered message moderation.",
       tech: ["Node.js", "Socket.io", "WebRTC", "React"],
-      features: ["End-to-end encryption", "Video calls", "AI moderation", "File sharing"],
+      features: [
+        "End-to-end encryption",
+        "Video calls",
+        "AI moderation",
+        "File sharing",
+      ],
       link: "#",
-      icon: "💬"
-    }
-  ]
+      icon: "💬",
+    },
+  ];
 
   return (
-    <section ref={ref} id="projects" className="py-20 px-4 bg-muted/30 relative overflow-hidden">
+    <section
+      ref={ref}
+      id="projects"
+      className="py-20 px-4 bg-muted/30 relative overflow-hidden"
+    >
       <div className="absolute inset-0">
         <motion.div
           className="absolute inset-0"
@@ -560,13 +623,13 @@ const ProjectsSection = () => {
             background: [
               "radial-gradient(circle at 30% 20%, rgba(120, 119, 198, 0.05) 0%, transparent 50%)",
               "radial-gradient(circle at 70% 80%, rgba(255, 119, 198, 0.05) 0%, transparent 50%)",
-              "radial-gradient(circle at 30% 20%, rgba(120, 119, 198, 0.05) 0%, transparent 50%)"
-            ]
+              "radial-gradient(circle at 30% 20%, rgba(120, 119, 198, 0.05) 0%, transparent 50%)",
+            ],
           }}
           transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
         />
       </div>
-      
+
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -574,7 +637,7 @@ const ProjectsSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold mb-4"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -582,16 +645,17 @@ const ProjectsSection = () => {
           >
             Featured Projects
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-muted-foreground max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            A selection of my recent work showcasing full-stack development and machine learning capabilities
+            A selection of my recent work showcasing full-stack development and
+            machine learning capabilities
           </motion.p>
         </motion.div>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <motion.div
@@ -599,15 +663,15 @@ const ProjectsSection = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: index * 0.2 }}
-              whileHover={{ 
+              whileHover={{
                 y: -10,
                 scale: 1.02,
-                transition: { duration: 0.3 }
+                transition: { duration: 0.3 },
               }}
               className="group"
             >
               <Card className="h-full hover:shadow-2xl transition-all duration-300 border-0 bg-background/50 backdrop-blur-sm group-hover:bg-background/70 overflow-hidden">
-                <motion.div 
+                <motion.div
                   className="p-6 relative"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}
@@ -616,20 +680,20 @@ const ProjectsSection = () => {
                     className="absolute top-2 right-2 text-4xl opacity-20"
                     animate={{
                       rotate: [0, 10, -10, 0],
-                      scale: [1, 1.1, 1]
+                      scale: [1, 1.1, 1],
                     }}
-                    transition={{ 
-                      duration: 3, 
-                      repeat: Infinity, 
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
                       delay: index * 0.5,
-                      ease: "easeInOut"
+                      ease: "easeInOut",
                     }}
                   >
                     {project.icon}
                   </motion.div>
-                  
+
                   <div className="flex justify-between items-start mb-4">
-                    <motion.h3 
+                    <motion.h3
                       className="text-xl font-semibold group-hover:text-primary transition-colors"
                       whileHover={{ x: 5 }}
                       transition={{ duration: 0.3 }}
@@ -638,10 +702,10 @@ const ProjectsSection = () => {
                     </motion.h3>
                     <motion.a
                       href={project.link}
-                      whileHover={{ 
-                        scale: 1.2, 
+                      whileHover={{
+                        scale: 1.2,
                         rotate: 45,
-                        transition: { duration: 0.3 }
+                        transition: { duration: 0.3 },
                       }}
                       whileTap={{ scale: 0.9 }}
                       className="text-muted-foreground hover:text-foreground"
@@ -649,8 +713,8 @@ const ProjectsSection = () => {
                       <ExternalLink size={20} />
                     </motion.a>
                   </div>
-                  
-                  <motion.p 
+
+                  <motion.p
                     className="text-muted-foreground mb-6 leading-relaxed"
                     initial={{ opacity: 0.7 }}
                     whileHover={{ opacity: 1 }}
@@ -658,8 +722,8 @@ const ProjectsSection = () => {
                   >
                     {project.description}
                   </motion.p>
-                  
-                  <motion.div 
+
+                  <motion.div
                     className="mb-6"
                     initial={{ opacity: 0, y: 10 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -672,13 +736,13 @@ const ProjectsSection = () => {
                           key={feature}
                           initial={{ opacity: 0, scale: 0 }}
                           animate={inView ? { opacity: 1, scale: 1 } : {}}
-                          transition={{ 
-                            duration: 0.4, 
-                            delay: 1 + index * 0.2 + featureIndex * 0.1 
+                          transition={{
+                            duration: 0.4,
+                            delay: 1 + index * 0.2 + featureIndex * 0.1,
                           }}
-                          whileHover={{ 
+                          whileHover={{
                             scale: 1.1,
-                            transition: { duration: 0.2 }
+                            transition: { duration: 0.2 },
                           }}
                         >
                           <Badge variant="secondary" className="text-xs">
@@ -688,9 +752,9 @@ const ProjectsSection = () => {
                       ))}
                     </div>
                   </motion.div>
-                  
+
                   <Separator className="mb-4" />
-                  
+
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -703,13 +767,13 @@ const ProjectsSection = () => {
                           key={tech}
                           initial={{ opacity: 0, rotate: -180 }}
                           animate={inView ? { opacity: 1, rotate: 0 } : {}}
-                          transition={{ 
-                            duration: 0.6, 
-                            delay: 1.4 + index * 0.2 + techIndex * 0.1 
+                          transition={{
+                            duration: 0.6,
+                            delay: 1.4 + index * 0.2 + techIndex * 0.1,
                           }}
-                          whileHover={{ 
+                          whileHover={{
                             scale: 1.1,
-                            transition: { duration: 0.2 }
+                            transition: { duration: 0.2 },
                           }}
                         >
                           <Badge variant="outline" className="text-xs">
@@ -724,18 +788,19 @@ const ProjectsSection = () => {
             </motion.div>
           ))}
         </div>
-        
+
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.8, delay: 2 }}
           className="text-center mt-12"
         >
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button variant="outline" size="lg" className="px-8 relative overflow-hidden group">
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button
+              variant="outline"
+              size="lg"
+              className="px-8 relative overflow-hidden group"
+            >
               <span className="relative z-10">View All Projects</span>
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10"
@@ -749,38 +814,42 @@ const ProjectsSection = () => {
         </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 const ContactSection = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.1
-  })
+    threshold: 0.1,
+  });
 
   const contactMethods = [
     {
       icon: <Mail className="h-5 w-5" />,
       label: "Get In Touch",
       href: "mailto:swarup@example.com",
-      color: "from-blue-500 to-cyan-500"
+      color: "from-blue-500 to-cyan-500",
     },
     {
       icon: <Github className="h-5 w-5" />,
       label: "GitHub",
       href: "https://github.com",
-      color: "from-gray-700 to-gray-900"
+      color: "from-gray-700 to-gray-900",
     },
     {
       icon: <Linkedin className="h-5 w-5" />,
       label: "LinkedIn",
       href: "https://linkedin.com",
-      color: "from-blue-600 to-blue-800"
-    }
-  ]
+      color: "from-blue-600 to-blue-800",
+    },
+  ];
 
   return (
-    <section ref={ref} id="contact" className="py-20 px-4 relative overflow-hidden">
+    <section
+      ref={ref}
+      id="contact"
+      className="py-20 px-4 relative overflow-hidden"
+    >
       <div className="absolute inset-0">
         <motion.div
           className="absolute inset-0"
@@ -789,20 +858,20 @@ const ContactSection = () => {
               "radial-gradient(circle at 50% 50%, rgba(120, 119, 198, 0.05) 0%, transparent 70%)",
               "radial-gradient(circle at 20% 80%, rgba(255, 119, 198, 0.05) 0%, transparent 70%)",
               "radial-gradient(circle at 80% 20%, rgba(120, 219, 255, 0.05) 0%, transparent 70%)",
-              "radial-gradient(circle at 50% 50%, rgba(120, 119, 198, 0.05) 0%, transparent 70%)"
-            ]
+              "radial-gradient(circle at 50% 50%, rgba(120, 119, 198, 0.05) 0%, transparent 70%)",
+            ],
           }}
           transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
         />
       </div>
-      
+
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -810,17 +879,18 @@ const ContactSection = () => {
           >
             Let's Connect
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            I'm always interested in hearing about new opportunities and exciting projects. 
-            Feel free to reach out if you'd like to collaborate or just have a chat!
+            I'm always interested in hearing about new opportunities and
+            exciting projects. Feel free to reach out if you'd like to
+            collaborate or just have a chat!
           </motion.p>
         </motion.div>
-        
+
         <div className="flex flex-wrap gap-4 justify-center mb-12">
           {contactMethods.map((method, index) => (
             <motion.div
@@ -837,8 +907,8 @@ const ContactSection = () => {
                 rel="noopener noreferrer"
                 className={`relative overflow-hidden group`}
               >
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="px-8 py-3 text-base relative overflow-hidden group"
                   variant={index === 0 ? "default" : "outline"}
                 >
@@ -863,7 +933,7 @@ const ContactSection = () => {
             </motion.div>
           ))}
         </div>
-        
+
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -882,34 +952,34 @@ const ContactSection = () => {
               © 2024 Swarup Kumar. Built with passion and lots of coffee ☕
             </motion.span>
           </motion.div>
-          
+
           <motion.div
             className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-xl"
             animate={{
               scale: [1, 1.2, 1],
-              opacity: [0.3, 0.1, 0.3]
+              opacity: [0.3, 0.1, 0.3],
             }}
             transition={{ duration: 4, repeat: Infinity }}
           />
         </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default function Home() {
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    setIsLoaded(true)
-  }, [])
+    setIsLoaded(true);
+  }, []);
 
   if (!isLoaded) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
       </div>
-    )
+    );
   }
 
   return (
@@ -919,6 +989,9 @@ export default function Home() {
       <SkillsSection />
       <ProjectsSection />
       <ContactSection />
+      <GroqChatButton />
     </div>
-  )
+  );
+
+
 }

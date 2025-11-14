@@ -1,141 +1,227 @@
-# 🚀 Welcome to Z.ai Code Scaffold
+# Portfolio Website
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with [Z.ai](https://chat.z.ai)'s AI-powered coding assistance.
+A modern, responsive portfolio website built with Next.js, featuring a beautiful UI with dark mode support, smooth animations, and a comprehensive showcase of skills and projects.
 
-## ✨ Technology Stack
+## 🛠️ Tech Stack
 
-This scaffold provides a robust foundation built with:
+### Core Framework
 
-### 🎯 Core Framework
-- **⚡ Next.js 15** - The React framework for production with App Router
-- **📘 TypeScript 5** - Type-safe JavaScript for better developer experience
-- **🎨 Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
+- **Next.js 15** - React framework with App Router for server-side rendering and optimal performance
+- **React 19** - Latest React library for building user interfaces
+- **TypeScript 5** - Type-safe JavaScript for enhanced developer experience and code reliability
 
-### 🧩 UI Components & Styling
-- **🧩 shadcn/ui** - High-quality, accessible components built on Radix UI
-- **🎯 Lucide React** - Beautiful & consistent icon library
-- **🌈 Framer Motion** - Production-ready motion library for React
-- **🎨 Next Themes** - Perfect dark mode in 2 lines of code
+### Styling & UI
 
-### 📋 Forms & Validation
-- **🎣 React Hook Form** - Performant forms with easy validation
-- **✅ Zod** - TypeScript-first schema validation
+- **Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
+- **shadcn/ui** - High-quality, accessible component library built on Radix UI
+- **Framer Motion** - Production-ready animation library for smooth transitions and interactions
+- **Next Themes** - Seamless dark/light mode switching
+- **Lucide React** - Beautiful and consistent icon library
 
-### 🔄 State Management & Data Fetching
-- **🐻 Zustand** - Simple, scalable state management
-- **🔄 TanStack Query** - Powerful data synchronization for React
-- **🌐 Axios** - Promise-based HTTP client
+### Forms & Validation
 
-### 🗄️ Database & Backend
-- **🗄️ Prisma** - Next-generation Node.js and TypeScript ORM
-- **🔐 NextAuth.js** - Complete open-source authentication solution
+- **React Hook Form** - Performant forms with minimal re-renders
+- **Zod** - TypeScript-first schema validation library
+- **@hookform/resolvers** - Validation resolver for React Hook Form
 
-### 🎨 Advanced UI Features
-- **📊 TanStack Table** - Headless UI for building tables and datagrids
-- **🖱️ DND Kit** - Modern drag and drop toolkit for React
-- **📊 Recharts** - Redefined chart library built with React and D3
-- **🖼️ Sharp** - High performance image processing
+### State Management & Data Fetching
 
-### 🌍 Internationalization & Utilities
-- **🌍 Next Intl** - Internationalization library for Next.js
-- **📅 Date-fns** - Modern JavaScript date utility library
-- **🪝 ReactUse** - Collection of essential React hooks for modern development
+- **Zustand** - Lightweight and scalable state management
+- **TanStack Query** - Powerful data synchronization and caching for React
+- **Axios** - Promise-based HTTP client for API requests
 
-## 🎯 Why This Scaffold?
+### Database & Backend
 
-- **🏎️ Fast Development** - Pre-configured tooling and best practices
-- **🎨 Beautiful UI** - Complete shadcn/ui component library with advanced interactions
-- **🔒 Type Safety** - Full TypeScript configuration with Zod validation
-- **📱 Responsive** - Mobile-first design principles with smooth animations
-- **🗄️ Database Ready** - Prisma ORM configured for rapid backend development
-- **🔐 Auth Included** - NextAuth.js for secure authentication flows
-- **📊 Data Visualization** - Charts, tables, and drag-and-drop functionality
-- **🌍 i18n Ready** - Multi-language support with Next Intl
-- **🚀 Production Ready** - Optimized build and deployment settings
-- **🤖 AI-Friendly** - Structured codebase perfect for AI assistance
+- **Prisma** - Next-generation ORM for type-safe database access
+- **NextAuth.js** - Complete authentication solution for Next.js
 
-## 🚀 Quick Start
+### UI Components & Libraries
+
+- **Radix UI** - Unstyled, accessible component primitives
+- **TanStack Table** - Headless UI for building powerful data tables
+- **Recharts** - Composable charting library built on React components
+- **DND Kit** - Modern drag and drop toolkit for React
+- **React Markdown** - Markdown renderer for React
+- **React Syntax Highlighter** - Syntax highlighting component
+
+### Utilities & Tools
+
+- **date-fns** - Modern JavaScript date utility library
+- **clsx** - Utility for constructing className strings conditionally
+- **tailwind-merge** - Merge Tailwind CSS classes without style conflicts
+- **uuid** - Generate RFC-compliant UUIDs
+- **Sharp** - High performance image processing
+
+### Development Tools
+
+- **Nodemon** - Automatically restart the server during development
+- **ESLint** - Code linting for maintaining code quality
+- **TypeScript** - Static type checking
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Make sure you have the following installed on your system:
+
+- **Node.js** (v18 or higher)
+- **npm** or **yarn** package manager
+
+### Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/Swarup215/PortFolio.git
+   cd PortFolio
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables** (if needed)
+
+   ```bash
+   # Create a .env.local file in the root directory
+   # Add your environment variables here
+   ```
+
+4. **Set up the database** (if using Prisma)
+
+   ```bash
+   # Generate Prisma Client
+   npm run db:generate
+
+   # Push database schema
+   npm run db:push
+   ```
+
+### Running the Development Server
+
+Start the development server with hot reload:
 
 ```bash
-# Install dependencies
-npm install
-
-# Start development server
 npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your application running.
+The website will be available at [http://localhost:3000](http://localhost:3000)
 
-## 🤖 Powered by Z.ai
+The development server uses **Nodemon** to automatically restart when you make changes to files in the `src` directory.
 
-This scaffold is optimized for use with [Z.ai](https://chat.z.ai) - your AI assistant for:
+### Building for Production
 
-- **💻 Code Generation** - Generate components, pages, and features instantly
-- **🎨 UI Development** - Create beautiful interfaces with AI assistance  
-- **🔧 Bug Fixing** - Identify and resolve issues with intelligent suggestions
-- **📝 Documentation** - Auto-generate comprehensive documentation
-- **🚀 Optimization** - Performance improvements and best practices
+1. **Build the application**
 
-Ready to build something amazing? Start chatting with Z.ai at [chat.z.ai](https://chat.z.ai) and experience the future of AI-powered development!
+   ```bash
+   npm run build
+   ```
+
+2. **Start the production server**
+   ```bash
+   npm start
+   ```
+
+### Other Available Scripts
+
+- `npm run lint` - Run ESLint to check for code issues
+- `npm run db:generate` - Generate Prisma Client
+- `npm run db:push` - Push database schema changes
+- `npm run db:migrate` - Run database migrations
+- `npm run db:reset` - Reset the database
+
+## 📖 How to Use This Website
+
+### For Visitors
+
+1. **Navigate the Portfolio**
+
+   - Scroll through the homepage to view different sections
+   - Use the navigation menu to jump to specific sections (Skills, Projects, Contact)
+
+2. **Dark Mode Toggle**
+
+   - Click the theme toggle button to switch between light and dark modes
+   - Your preference is automatically saved
+
+3. **View Projects**
+
+   - Browse through the projects section to see featured work
+   - Each project card displays technologies used and key features
+
+4. **Contact**
+   - Use the contact form to send messages
+   - View social media links and other contact information
+
+### For Developers
+
+1. **Customize Content**
+
+   - Edit `src/app/page.tsx` to modify the homepage content
+   - Update project information, skills, and personal details
+
+2. **Add New Components**
+
+   - Create new components in `src/components/`
+   - Use shadcn/ui components from `src/components/ui/`
+
+3. **Modify Styling**
+
+   - Update `src/app/globals.css` for global styles
+   - Use Tailwind CSS classes directly in components
+   - Customize theme in `tailwind.config.ts`
+
+4. **Database Management**
+   - Modify `prisma/schema.prisma` to update database schema
+   - Run migrations when schema changes
 
 ## 📁 Project Structure
 
 ```
-src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable React components
-│   └── ui/             # shadcn/ui components
-├── hooks/              # Custom React hooks
-└── lib/                # Utility functions and configurations
+PortFolio/
+├── src/
+│   ├── app/              # Next.js App Router pages and layouts
+│   │   ├── api/          # API routes
+│   │   ├── globals.css   # Global styles
+│   │   ├── layout.tsx    # Root layout
+│   │   └── page.tsx      # Homepage
+│   ├── components/       # React components
+│   │   ├── ui/          # shadcn/ui components
+│   │   ├── theme-provider.tsx
+│   │   └── theme-toggle.tsx
+│   ├── hooks/           # Custom React hooks
+│   └── lib/             # Utility functions and configurations
+├── public/              # Static assets (images, icons, etc.)
+├── prisma/             # Prisma schema and migrations
+├── db/                 # Database files
+├── next.config.ts      # Next.js configuration
+├── tailwind.config.ts  # Tailwind CSS configuration
+├── tsconfig.json       # TypeScript configuration
+└── package.json        # Project dependencies and scripts
 ```
 
-## 🎨 Available Features & Components
+## 🎨 Features
 
-This scaffold includes a comprehensive set of modern web development tools:
+- ✨ **Responsive Design** - Works seamlessly on all device sizes
+- 🌙 **Dark Mode** - Toggle between light and dark themes
+- 🎭 **Smooth Animations** - Beautiful transitions powered by Framer Motion
+- 📱 **Mobile-First** - Optimized for mobile devices
+- ⚡ **Fast Performance** - Optimized with Next.js server-side rendering
+- 🔒 **Type-Safe** - Full TypeScript support throughout the codebase
+- ♿ **Accessible** - Built with accessibility in mind using Radix UI
 
-### 🧩 UI Components (shadcn/ui)
-- **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
-- **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch
-- **Feedback**: Alert, Toast (Sonner), Progress, Skeleton
-- **Navigation**: Breadcrumb, Menubar, Navigation Menu, Pagination
-- **Overlay**: Dialog, Sheet, Popover, Tooltip, Hover Card
-- **Data Display**: Badge, Avatar, Calendar
+## 📝 License
 
-### 📊 Advanced Data Features
-- **Tables**: Powerful data tables with sorting, filtering, pagination (TanStack Table)
-- **Charts**: Beautiful visualizations with Recharts
-- **Forms**: Type-safe forms with React Hook Form + Zod validation
+This project is private and proprietary.
 
-### 🎨 Interactive Features
-- **Animations**: Smooth micro-interactions with Framer Motion
-- **Drag & Drop**: Modern drag-and-drop functionality with DND Kit
-- **Theme Switching**: Built-in dark/light mode support
+## 👤 Author
 
-### 🔐 Backend Integration
-- **Authentication**: Ready-to-use auth flows with NextAuth.js
-- **Database**: Type-safe database operations with Prisma
-- **API Client**: HTTP requests with Axios + TanStack Query
-- **State Management**: Simple and scalable with Zustand
+**Swarup215**
 
-### 🌍 Production Features
-- **Internationalization**: Multi-language support with Next Intl
-- **Image Optimization**: Automatic image processing with Sharp
-- **Type Safety**: End-to-end TypeScript with Zod validation
-- **Essential Hooks**: 100+ useful React hooks with ReactUse for common patterns
-
-## 🤝 Get Started with Z.ai
-
-1. **Clone this scaffold** to jumpstart your project
-2. **Visit [chat.z.ai](https://chat.z.ai)** to access your AI coding assistant
-3. **Start building** with intelligent code generation and assistance
-4. **Deploy with confidence** using the production-ready setup
+- GitHub: [@Swarup215](https://github.com/Swarup215)
 
 ---
 
-Built with ❤️ for the developer community. Supercharged by [Z.ai](https://chat.z.ai) 🚀
+Built with ❤️ using Next.js and modern web technologies.
